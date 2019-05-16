@@ -1,29 +1,33 @@
-/*
-包含所有的action creator
+import {
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  RECEIVE_COMMENTS
+} from './action-types'
 
-同步的action都是返回一个对象
-异步的action返回的是一个函数
+export const addComment = (comment) => ({type: ADD_COMMENT, data: comment})
 
- */
+export const deleteComment = (index) => ({type: DELETE_COMMENT, data: index})
+
+const receiveComments = (comments) => ({type: RECEIVE_COMMENTS, data: comments})
 
 
-
-import {DECREMENT, INCREMENT} from "./action-types";
-
-// 增加
-export const increment = (num) =>({type: INCREMENT, data: num})
-
-// 减少
-export const decrement= (num) =>({type: DECREMENT, data: num})
-
-// 异步action
-export const incrementAsync = (num) =>{
-    return dispatch =>{
-        // 异步代码
-        setTimeout( () => {
-            // 1S之后采取分发一个增加的action
-            dispatch(increment(num))
-        },1000 )
-    }
+export const getComments = () => {
+  return dispatch => {
+    setTimeout(() => {
+      const comments = [
+        {
+          username: "Tom",
+          content: "ReactJS好难啊!",
+          id: Date.now()
+        },
+        {
+          username: "JACK",
+          content: "ReactJS还不错!",
+          id: Date.now() + 1
+        }
+      ]
+      dispatch(receiveComments(comments))
+    }, 1000)
+  }
 }
 

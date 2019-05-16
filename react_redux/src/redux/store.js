@@ -1,15 +1,12 @@
-import {createStore,applyMiddleware} from "redux";
+import React from 'react'
+import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
-import {counter} from "./reducers";
+import reducers from './reducers'
 
-
-// 生成一个store对象
-
-const store = createStore(
-    counter,
-    composeWithDevTools(applyMiddleware(thunk))  // 应用上异步的中间件
+// 根据counter函数创建store对象
+export default createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk)) // 应用上异步中间件
 )
-
-export default store
