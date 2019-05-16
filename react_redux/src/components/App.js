@@ -1,80 +1,71 @@
 import React, {Component} from 'react'
+import {INCREMENT, DECREMENT} from "../redux/action-types";
 
-class App extends Component {
+export default class App extends Component {
 
-    state = {
-        count: 2,
-        selectedCount:'1'
+    // 更新状态的操作交给redux做
+    /*    state = {
+            count: 0
+        }*/
+
+    increment = () => {
+        const num = this.refs.numSelect.value * 1
+        /*  const count = this.state.count + num
+          this.setState({count})*/
+
+        // 调用store的方法更新
+        this.props.store.dispatch({type: INCREMENT, data: num});
+
     }
 
-    // 选择
-    handleSelect = (e) =>{
-        this.setState({selectedCount:e.target.value})
+    decrement = () => {
+        const num = this.refs.numSelect.value * 1
+        // 调用store的方法更新
+        this.props.store.dispatch({type: DECREMENT, data: num});
     }
 
-    // 增加
-    increment = () =>{
-     const {selectedCount,count} =this.state;
-     const addCount = count + parseInt(selectedCount);
-     this.setState({count:addCount})
-    }
-
-    // 如果是奇数才增加
-    incrementIfOdd = () =>{
-        const {selectedCount,count} =this.state;
-        if(count % 2 ==1 ){
-            const addCount = count + parseInt(selectedCount);
-            this.setState({count:addCount});
+    incrementIfOdd = () => {
+        const num = this.refs.numSelect.value * 1
+        const count = this.props.store.getState()
+        if (count % 2 === 1) {
+            // 调用store的方法更新
+            this.props.store.dispatch({type: INCREMENT, data: num});
         }
     }
 
-    // 异步增加
-    incrementAsync = () =>{
-        const {selectedCount,count} =this.state;
-        const addCount = count + parseInt(selectedCount);
-
-        setTimeout( () =>{
-            this.setState({count:addCount})
+    incrementAsync = () => {
+        const num = this.refs.numSelect.value * 1
+        setTimeout(() =>{
+            // 调用store的方法更新
+            this.props.store.dispatch({type: INCREMENT, data: num});
         },1000)
-
     }
-
-
-    // 减少
-    decrement = () =>{
-        const {selectedCount,count} =this.state;
-        const addCount =count - parseInt(selectedCount);
-        this.setState({count:addCount});
-    }
-
-
-
 
     render() {
+        // 得到状态
+        /* const {count} = this.state*/
 
-        const {count} = this.state
+        // 在store中获取
+        const count = this.props.store.getState();
 
         return (
             <div>
-                <p>点击 {count} 次</p>
-                <div>
-                    <select onChange={this.handleSelect} >
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                    </select>&nbsp;
-                    <button onClick={this.increment} >+</button>
-                    &nbsp;
-                    <button onClick={this.decrement}>-</button>
-                    &nbsp;
-                    <button onClick={this.incrementIfOdd} >如果是奇数，增加</button>
-                    &nbsp;
-                    <button onClick={this.incrementAsync} >异步</button>
-                </div>
-
+                <p>
+                    click {count} times {' '}
+                </p>
+                <select ref="numSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>{' '}
+                <button onClick={this.increment}>+</button>
+                {' '}
+                <button onClick={this.decrement}>-</button>
+                {' '}
+                <button onClick={this.incrementIfOdd}>increment if odd</button>
+                {' '}
+                <button onClick={this.incrementAsync}>increment async</button>
             </div>
         )
     }
 }
-
-export default App
