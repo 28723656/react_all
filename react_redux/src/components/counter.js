@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import {increment,decrement} from '../redux/actions'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
 
-class App extends Component {
+class Counter extends Component {
 
     static propTypes ={
         count: PropTypes.number.isRequired,
@@ -72,7 +70,4 @@ class App extends Component {
 }
 
 
-export default connect(
-    state =>({count: state}),
-    {increment,decrement}
-)(App)
+export default Counter
