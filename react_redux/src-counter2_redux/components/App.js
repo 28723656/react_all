@@ -1,38 +1,30 @@
 import React, {Component} from 'react'
-import {increment,decrement} from '../redux/actions'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import * as actions from '../redux/actions'
 
-class App extends Component {
-
-    static propTypes ={
-        count: PropTypes.number.isRequired,
-        increment: PropTypes.func.isRequired,
-        decrement: PropTypes.func.isRequired,
-    }
-
+export default class App extends Component {
 
     // 更新状态的操作交给redux做
+
     increment = () => {
         const num = this.refs.numSelect.value * 1
 
         // 调用store的方法更新
-        this.props.increment(num);
+        this.props.store.dispatch(actions.increment(num));
 
     }
 
     decrement = () => {
         const num = this.refs.numSelect.value * 1
         // 调用store的方法更新
-        this.props.decrement(num);
+        this.props.store.dispatch(actions.decrement(num));
     }
 
     incrementIfOdd = () => {
         const num = this.refs.numSelect.value * 1
-        const count = this.props.count
+        const count = this.props.store.getState()
         if (count % 2 === 1) {
             // 调用store的方法更新
-            this.props.increment(num);
+            this.props.store.dispatch(actions.increment(num));
         }
     }
 
@@ -40,14 +32,14 @@ class App extends Component {
         const num = this.refs.numSelect.value * 1
         setTimeout(() =>{
             // 调用store的方法更新
-            this.props.increment(num);
+            this.props.store.dispatch(actions.increment(num));
         },1000)
     }
 
     render() {
 
         // 在store中获取
-        const {count} = this.props
+        const count = this.props.store.getState();
 
         return (
             <div>
@@ -70,9 +62,3 @@ class App extends Component {
         )
     }
 }
-
-
-export default connect(
-    state =>({count: state}),
-    {increment,decrement}
-)(App)
