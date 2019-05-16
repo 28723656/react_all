@@ -7,8 +7,6 @@ class Counter extends Component {
         count: PropTypes.number.isRequired,
         increment: PropTypes.func.isRequired,
         decrement: PropTypes.func.isRequired,
-        incrementAsync: PropTypes.func.isRequired,
-
     }
 
 
@@ -38,10 +36,10 @@ class Counter extends Component {
 
     incrementAsync = () => {
         const num = this.refs.numSelect.value * 1
-
-        // 用redux实现异步
-        this.props.incrementAsync(num);
-
+        setTimeout(() =>{
+            // 调用store的方法更新
+            this.props.increment(num);
+        },1000)
     }
 
     render() {
