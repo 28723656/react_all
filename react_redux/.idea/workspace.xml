@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="545940c8-0c12-4a96-a9be-3b65033cb548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../antd-demo/src/pages/Test02/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../antd-demo/src/pages/Test02/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antd-demo" beforeDir="false" afterPath="$PROJECT_DIR$/../antd-demo" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -119,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="865" />
     <option name="height" value="738" />
@@ -269,7 +269,7 @@
     <option name="totallyTimeSpent" value="19244000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="865" height="738" extended-state="1" />
+    <frame x="0" y="23" width="865" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
